@@ -1,0 +1,27 @@
+<div>
+  <button class="btn btn-success float-start" routerLink="/">Gestion de Tramites</button> 
+  </div>
+<div class="container mt-5">
+    <div class="row">                           
+                    <table class="styled-table">
+                        <thead>
+                          <tr>                            
+                            <th scope="col">Id Usuario</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Genero</th>
+                            <th scope="col">Estado</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let user of listaUsr">                            
+                            <td>{{user.id}}</td>
+                            <td>{{user.name}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.gender}}</td>
+                            <td>{{user.status}}</td>
+                          </tr>
+                        </tbody>
+                      </table>                
+    </div>
+</div>

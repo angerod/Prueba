@@ -1,0 +1,81 @@
+
+<div>
+<button class="btn btn-success float-start" routerLink="/listausu">Listado de Usuarios</button> 
+</div>
+<h1>Registrar Tramite</h1>
+<div class="center">   
+        <form [formGroup]="tramiteForm" (ngSubmit)="addTramite(tramiteForm.value)">
+            <div class="inputbox">
+                <input type="text"  class="form-control" id="nombre" formControlName="nombre">
+                <span> Nombre</span>
+                
+            </div>            
+            <div class="inputbox">
+                <input type="number" class="form-control" id="anio" formControlName="anio">
+                <span> Año</span>          
+            </div>  
+
+            <div class="inputbox">
+                <input type="text"  class="form-control" id="desc" formControlName="desc">
+                <span> Descripcion</span>              
+            </div>
+
+            <div class="inputbox">
+                <input type="text"  class="form-control" id="persona" formControlName="persona">
+                <span> Persona que radica</span>
+                
+            </div>
+
+            <div class="inputbox">
+                <input type="text"  class="form-control" id="funcionario" formControlName="funcionario">
+                <span> Funcionario</span>                
+            </div>
+            
+            <div><span class="alerta" *ngIf="tramiteForm.get('nombre')?.hasError('required')"> <strong>El nombre es requerido</strong></span></div>
+            <div><span class="alerta" *ngIf="tramiteForm.get('anio')?.hasError('required')"> <strong>El año es requerido, solo con 4 digitos</strong></span></div>  
+            <div><span class="alerta" *ngIf="tramiteForm.get('desc')?.hasError('required')"> <strong>La descripcion es requerida</strong></span></div>
+            <div><span class="alerta" *ngIf="tramiteForm.get('persona')?.hasError('required')"> <strong>La persona que radica es requerida</strong></span></div>
+            <div><span class="alerta" *ngIf="tramiteForm.get('funcionario')?.hasError('required')"> <strong>El funcionario es requerido</strong></span></div>
+
+           
+                <input type="submit" class="btn btn-success btn-lg float-end" [disabled]="!tramiteForm.valid" value="Guardar">
+            
+        </form>  
+</div>
+
+
+<div class="right">
+    <h1>Lista Tramites</h1>
+<table class="styled-table">
+    <thead>
+      <tr>                            
+        <th scope="col"># Registro</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Año</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Persona Radica</th>
+        <th scope="col">Funcionario</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let tra of listaTramites"> 
+            <td>{{tra.id}}</td>                           
+            <td>{{tra.name}}</td>
+            <td>{{tra.anio}}</td>            
+            <td>{{tra.description}}</td> 
+            <td>{{tra.person}}</td> 
+            <td>{{tra.funcionario}}</td> 
+            <td>
+                <button (click)="editTramite(tra)" class="btn btn-danger">Editar</button>
+            </td>
+          </tr>
+    </tbody>
+ </table>  
+ <ng-container>
+    <label id="message">
+        {{IdReg}}
+    </label>            
+</ng-container> 
+ <h1 style="color:crimson;" *ngIf="listaTramites.length == 0">NO HAY TRAMITES REGISTRADOS</h1>
+</div>
+
